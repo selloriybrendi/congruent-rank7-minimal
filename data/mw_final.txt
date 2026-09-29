@@ -1,0 +1,6 @@
+tanlov: 1785 ta (r2>=6 hammasi: 785) + nazorat 3
+NAZORAT 48272239 5 5 5 5 True 0.69  OK
+NAZORAT 6611719866 6 6 6 6 True 0.42  OK
+NAZORAT 797507543735 7 7 7 7 True 0.87  OK
+
+1788/1788 mos · zid yoki r>=7: []

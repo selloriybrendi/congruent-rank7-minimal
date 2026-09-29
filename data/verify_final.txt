@@ -1,0 +1,7 @@
+[PASS] 1 to'liqlik T(797507543734): pi_sanoq = elak  —  143452705272 = 143452705272
+[PASS] 2 izchillik: natija2_797507543734 dagi k <= 100000000000 = natija_1e11  —  804198 ta
+[PASS] 3 qamrov: GP to'plami = elak nomzodlari (takrorsiz)  —  9053344 = 9053344
+      (qoldiq: 163 ta k izogeniya sinfi bilan qayta baholandi)
+[PASS] 4 hammasida r2 < 7 (ERR yo'q)  —  max r2 = 6; buzuq: []
+
+4/4 o'tdi

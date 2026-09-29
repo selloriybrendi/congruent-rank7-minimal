@@ -1,0 +1,28 @@
+{
+  "title": "The smallest congruent number curve of rank seven: a(7) = 797507543735 in OEIS A194687",
+  "description": "We prove that a(7) = 797507543735 in OEIS A194687, i.e. for every positive integer k < 797507543735 the curve y^2 = x^3 - k^2 x has rank at most 6; previously only the upper bound (Rogers) was known. The proof is an exhaustive, unconditional computation (no GRH, BSD or parity conjecture): a Monsky 2-Selmer sieve over all squarefree k whose count 143452705272 is confirmed by an independent prime-counting method, PARI/GP ellrank upper bounds for all 9053344 candidates, isogeny-class refinement for the 163 residual cases, and an independent cross-check with Cremona's mwrank (866/866 and 1788/1788 agree). The record contains a 3-page note, all programs, the full certificate (candidate lists and per-k bounds) and a verifier that re-checks the certificate in about a minute. Generative AI (Claude Opus 5.5, Anthropic) was used to write and run the programs and to help prepare the text, under the author's direction.",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "creators": [
+    {
+      "name": "Kenjaev, Otakhon U.",
+      "orcid": "0009-0009-3566-9285"
+    }
+  ],
+  "keywords": [
+    "congruent number",
+    "elliptic curves",
+    "Mordell-Weil rank",
+    "2-Selmer group",
+    "OEIS A194687",
+    "rank 7"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://oeis.org/A194687",
+      "relation": "references",
+      "scheme": "url"
+    }
+  ],
+  "license": "cc-by-4.0"
+}

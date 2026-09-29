@@ -1,0 +1,88 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amssymb,booktabs,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+
+\title{The smallest congruent number curve of rank seven}
+\author{Otakhon U. Kenjaev}
+\date{29 September 2026 (version 1.0)}
+
+
+\begin{document}
+\begin{abstract}
+Let $E_k\colon y^2=x^3-k^2x$. Rogers (2004) found that $E_k$ has rank $7$ for $k=797507543735$, so the smallest such $k$
+(OEIS A194687, $a(7)$) is at most this number; minimality has been open. We prove that $a(7)=797507543735$.
+The proof is an exhaustive, unconditional computation: a Monsky $2$-Selmer sieve over all squarefree $k<797507543735$,
+followed by Cassels-pairing upper bounds from PARI/GP \texttt{ellrank}, with isogeny-class refinement for the few residual
+cases and an independent cross-check with Cremona's \texttt{mwrank}. No hypothesis (GRH, BSD, parity) is used.
+\end{abstract}
+\maketitle
+
+\section{Statement}
+\begin{theorem}
+For every positive integer $k<797507543735$ the curve $E_k$ has rank at most $6$. Hence $a(7)=797507543735$.
+\end{theorem}
+
+\begin{lemma}[reduction to squarefree $k$]
+$E_{u^2k}\cong E_k$ over $\mathbb{Q}$ via $(x,y)\mapsto(u^2x,u^3y)$. Hence the smallest $k$ with $\operatorname{rank}E_k\ge 7$ is squarefree.
+\end{lemma}
+Checked numerically on 40 random pairs by comparing minimal models (\texttt{verify\_all.py}, check 11).
+
+\section{Monsky sieve}
+For squarefree $k$ with odd prime divisors $p_1,\dots,p_t$, Monsky's formula (as stated in Dujella--Janfada--Salami 2009, \S3)
+gives the $2$-Selmer rank $s(k)=2t-\operatorname{rank}_{\mathbb F_2}M$, with $M=M_o$ or $M_e$ built from Legendre symbols.
+Since $\operatorname{rank}E_k\le s(k)$ and $s(k)$ is even iff $k\equiv 1,2,3\pmod 8$, a curve of rank $\ge7$ needs
+$s(k)\ge7$ ($k\equiv5,6,7$) or $s(k)\ge8$ ($k\equiv1,2,3$); in particular $t\ge4$.
+The rank parity conjecture is \emph{not} used.
+
+\paragraph{Completeness.} The C sieve enumerates squarefree $k\le N$ with $t\ge4$ by depth-first search. Its count $T(N)$ is
+compared with an independent count $F(N)+F(N/2)$ computed from a prime-counting table (\texttt{pi\_sanoq.c}):
+\begin{center}\begin{tabular}{rrr}\toprule
+$N$ & $T(N)$ (sieve) & $\pi$-count\\\midrule
+$10^{9}$ & 125034255 & 125034255\\
+$10^{10}$ & 1455446848 & 1455446848\\
+$10^{11}$ & 16432103801 & 16432103801\\
+$797507543734$ & 143452705272 & 143452705272\\\bottomrule
+\end{tabular}\end{center}
+
+\section{Elimination}
+Every candidate is passed to \texttt{ellrank} (PARI/GP 2.17.4, \texttt{nbthreads=1} because of a thread deadlock we observed),
+whose second output $r_2$ is an unconditional upper bound from $2$-descent and the Cassels--Tate pairing.
+\begin{center}\begin{tabular}{rrrr}\toprule
+range & candidates & $\max r_2$ & residual ($r_2\ge7$)\\\midrule
+$\le10^{10}$ & 47796 & 5 & 0\\
+$\le10^{11}$ & 804198 & 7 & 1\\
+$(10^{11},\,797507543734]$ & 8249146 & 7 & 162\\\bottomrule
+\end{tabular}\end{center}
+
+\paragraph{Residual cases.} For $k=85399368134=2\cdot19\cdot73\cdot4721\cdot6521$, \texttt{ellrank} gives $1\le r\le 7$
+(effort $6$: $3\le r\le7$). The rank is an isogeny invariant; over the $\mathbb Q$-isogeny class (4 curves, \texttt{ellisomat})
+the bounds are $r_2=7,5,5,5$, so $\operatorname{rank}E_k\le5$. One curve of the class is $y^2=x^3+4k^2x$.
+The same procedure applied to the $162$ residual $k\in(10^{11},797507543734]$ gives $\min r_2$ over the isogeny class
+equal to $1$ ($11$ cases), $3$ ($118$ cases) and $5$ ($33$ cases); none remains with $r_2\ge7$.
+Altogether all $9053344$ candidates $k\le797507543734$ have $\operatorname{rank}E_k\le6$.
+
+\section{Independent cross-check}
+All candidates up to $10^{11}$ with $r_2\ge5$ (843 curves), 20 random candidates and the known values $a(5),a(6),a(7)$ were
+recomputed with Cremona's \texttt{mwrank} (eclib, via passagemath-eclib 10.8.12): 866/866 agree (no contradiction, no rank $\ge7$);
+$a(5),a(6),a(7)$ give ranks $5,6,7$ exactly. For $k\in(10^{11},797507543734]$ the same check was run on all $785$ candidates with $r_2\ge6$
+and $1000$ random candidates, plus the three controls: $1788/1788$ agree (no contradiction, no rank $\ge7$).
+
+\section{Reproducibility}
+All code, candidate lists and per-$k$ bounds are published at \url{https://github.com/selloriybrendi/congruent-rank7-minimal} (archived on Zenodo). A single command
+(\texttt{verify\_all.py}, \texttt{verify\_yakun.py}) re-checks every claim; each checker was mutation-tested.
+
+\section*{Use of generative AI}
+Claude Opus 5.5 (Anthropic) via Claude Code was used to write and run the programs and to help prepare the text, under the
+author's direction; every number in the paper was produced by the programs and re-checked. The author takes full responsibility.
+
+\begin{thebibliography}{9}
+\bibitem{DJS} A.~Dujella, A.~S.~Janfada, S.~Salami, \emph{A search for high rank congruent number elliptic curves}, J. Integer Seq. 12 (2009), Article 09.5.8, \url{https://cs.uwaterloo.ca/journals/JIS/VOL12/Janfada/janfada3.pdf}.
+\bibitem{Monsky} P.~Monsky, appendix to D.~R.~Heath-Brown, \emph{The size of Selmer groups for the congruent number problem, II}, Invent. Math. 118 (1994), 331--370, doi:10.1007/BF01231536.
+\bibitem{Rogers} N.~F.~Rogers, \emph{Rank computations for the congruent number elliptic curves}, Experiment. Math. 9 (2000), 591--594, doi:10.1080/10586458.2000.10504662; PhD thesis (2004).
+\bibitem{OEIS} OEIS Foundation, A194687.
+\bibitem{PARI} The PARI Group, PARI/GP 2.17.4.
+\bibitem{mwrank} J.~E.~Cremona, \texttt{mwrank} / eclib.
+\end{thebibliography}
+\end{document}
