@@ -1,5 +1,7 @@
 # The smallest congruent number curve of rank seven
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23028371.svg)](https://doi.org/10.5281/zenodo.23028371)
+
 We prove that **a(7) = 797507543735** in [OEIS A194687](https://oeis.org/A194687): for every positive integer
 k < 797507543735 the curve E_k : y² = x³ − k²x has rank at most 6, and E_797507543735 has rank 7 (Rogers).
 Until now only the upper bound a(7) ≤ 797507543735 was known.
@@ -40,7 +42,7 @@ Some comments and log lines are in Uzbek (`o'tdi` = passed, `nomzod` = candidate
 
 ## Cite
 
-Kenjaev, O. U. (2026). *The smallest congruent number curve of rank seven* (v1.0). Zenodo.
+Kenjaev, O. U. (2026). *The smallest congruent number curve of rank seven* (v1.0). Zenodo. https://doi.org/10.5281/zenodo.23028371
 
 ## Use of generative AI
 
