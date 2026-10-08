@@ -53,3 +53,6 @@ The author takes full responsibility.
 ## License
 
 Code: MIT. Paper and data: CC BY 4.0. PARI/GP and eclib are separate programs and are not included.
+
+---
+**Author:** Otakhon U. Kenjaev (also written *Otaxon Kenjayev* / *Отахон Кенжаев*) · [otakhonkenjaev.com](https://otakhonkenjaev.com/) · ORCID [0009-0009-3566-9285](https://orcid.org/0009-0009-3566-9285)
